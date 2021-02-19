@@ -44,8 +44,6 @@ class Set_name(models.Model):
 	def __str__(self):
 		return f"{self.set_name}"
 
-
-
 class Rarity(models.Model):
 	rarity = models.CharField(max_length=50, blank=True, null=True)
 	def __str__(self):
@@ -77,7 +75,6 @@ class Card(models.Model):
 	cmc = models.CharField(max_length=5,blank=True, null=True)
 	power = models.CharField(max_length=3,blank=True, null=True)
 	toughness = models.CharField(max_length=3,blank=True, null=True)
-# Make blank = True for flavor text and oracle text not all cards have this
 	flavor_text = models.TextField(blank=True, null=True)
 	oracle_text = models.TextField(blank=True, null=True)
 
@@ -89,6 +86,8 @@ class Card(models.Model):
 
 	language = models.ForeignKey(Language, related_name= 'cards',on_delete=models.CASCADE,null=True)
 	legalities = models.ForeignKey(Legalities, related_name= 'cards',on_delete=models.CASCADE,null=True)
+	# not using color identity for the data base. It has entries but not connecting any of them to cards 
+	# only using color
 	color_identity = models.ForeignKey(Color_identity, related_name= 'cards',on_delete=models.CASCADE,null=True)
 	colors = models.ForeignKey(Colors, related_name= 'cards',on_delete=models.CASCADE,null=True)
 	keywords = models.ForeignKey(Keywords, related_name= 'cards',on_delete=models.CASCADE,null=True)
