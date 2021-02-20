@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+	{% load static %}
 	<title>MTG Card Search</title>
 </head>
 <body>
+	<h1> {{context.BUTT}}</h1>
 	<h1>Hello!!!!!!!!!!!!!!!!</h1>
 	<input type='text' name='text_search'><br>
 
@@ -26,10 +28,30 @@
 	<label for='digital'>Digital</label>
 
 	<input type='radio' class='radio' name='not_digital'>
-	<label for='not_digital'>Not Digital</label>
-
+	<label for='not_digital'>Not Digital</label><br>
+	<label for='keywords'>Keyword Abilities</label>
 	<select name='keywords'>
-		
+	{% for key in keywords %}
+		<option value={{key.keywords}}>{{key.keywords}}</option>
+	{% endfor %}
+	</select><br>
+
+	<label for='types'>Card Types</label>
+	<select name='types'>
+		{%for type in types%}
+			<option value={{type}}>{{type.type_line}}</option>	
+		{%endfor%}
+	</select><br>
+
+	<p>CMC</p>
+	<select name='comparison' id='comparison'>
+		<option value='less_than'><</option>
+		<option value='less_than_equal'><=</option>
+		<option value='greater_than'>></option>
+		<option value='greater_than_equal'>>=</option>
+		<option value='equal'>=</option>
 	</select>
+	<input type='number'>
+	<br>
 </body>
 </html>
